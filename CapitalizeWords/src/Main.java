@@ -3,6 +3,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/*
+  Author: Robert Stern (lexandro2000@gmail.com)
+  All of my solutions are available from https://github.com/lexandro/codeeval
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -34,3 +38,4 @@ public class Main {
         return String.valueOf(chars);
     }
 }
+
