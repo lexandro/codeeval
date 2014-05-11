@@ -1,4 +1,6 @@
-import java.lang.Math;import java.lang.String;import java.lang.System;public class Main {
+import java.lang.Math;import java.lang.String;import java.lang.System;
+
+class Main {
 
     public static void main(String[] args) {
         int counter = 1000;

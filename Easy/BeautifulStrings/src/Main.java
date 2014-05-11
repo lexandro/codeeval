@@ -55,7 +55,7 @@ public class Main {
     }
 
     private static List<Integer> reverseSortOccurrences(int[] occurrenceAmounts) {
-        List<Integer> values = new ArrayList<Integer>();
+        List<Integer> values = new ArrayList<>();
         for (int i : occurrenceAmounts) {
             if (i != 0) {
                 values.add(i);

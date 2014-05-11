@@ -27,7 +27,7 @@ public class Main {
 
 
     private static SortedSet<Integer> toIntSet(String fileLine) {
-        SortedSet<Integer> result = new TreeSet<Integer>();
+        SortedSet<Integer> result = new TreeSet<>();
         String[] lineItems = fileLine.split(",");
         for (String lineItem : lineItems) {
             result.add(Integer.valueOf(lineItem));

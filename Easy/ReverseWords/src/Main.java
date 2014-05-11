@@ -12,7 +12,7 @@ public class Main {
         // skipping args verification.. but not forgot..
 
         BufferedReader reader = new BufferedReader(new FileReader(new File(args[0])));
-        String fileLine = null;
+        String fileLine;
         while ((fileLine = reader.readLine()) != null) {
             if (fileLine.length() > 0) {
                 String[] words = fileLine.split("\\s");

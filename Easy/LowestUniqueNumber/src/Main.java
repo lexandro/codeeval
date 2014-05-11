@@ -41,7 +41,7 @@ public class Main {
     }
 
     private static Map<Integer, Integer> calculateOccurrences(int[] numbers) {
-        Map<Integer, Integer> numberCounters = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> numberCounters = new HashMap<>();
         for (int number : numbers) {
             if (numberCounters.containsKey(number)) {
                 numberCounters.put(number, numberCounters.get(number) + 1);

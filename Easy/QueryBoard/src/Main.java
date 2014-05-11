@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Main {
 
     public static final int MATRIX_SIZE = 256;
-    private static int[][] matrix = new int[MATRIX_SIZE][MATRIX_SIZE];
+    private static final int[][] matrix = new int[MATRIX_SIZE][MATRIX_SIZE];
 
     public static void main(String[] args) throws IOException {
         solveChallenge(args);
