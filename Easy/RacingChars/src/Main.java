@@ -10,7 +10,6 @@ import java.text.ParseException;
 public class Main {
 
     private static int carPos = 0;
-    private static int preCarPos = 0;
 
     public static void main(String[] args) throws Throwable {
         solveChallenge(args);
@@ -26,7 +25,7 @@ public class Main {
     }
 
     private static String racingChars(String fileLine) throws ParseException {
-        preCarPos = carPos;
+        int preCarPos = carPos;
         carPos = getPreferredPos(fileLine);
         char carDirection;
         if (carPos == preCarPos || preCarPos == 0) {
