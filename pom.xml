@@ -21,6 +21,8 @@
         <module>Moderate/MthToLastElement</module>
         <module>Moderate/FindASquare</module>
         <module>Moderate/LongestLines</module>
+        <module>DetectingCycles</module>
+        <module>Moderate/Endianness</module>
 
     </modules>
 
