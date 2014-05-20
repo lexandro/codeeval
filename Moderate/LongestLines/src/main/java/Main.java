@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.text.ParseException;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
@@ -35,7 +34,7 @@ public class Main {
         }
     }
 
-    private static void longestLines(String fileLine) throws ParseException {
+    private static void longestLines(String fileLine) {
         ensureRequiredAmountOfLinesRequired(fileLine);
         //
         for (int i = 0; i < lastLinesIndex; i++) {

@@ -24,7 +24,7 @@
         <module>DetectingCycles</module>
         <module>Moderate/Endianness</module>
         <module>Moderate/ArrayAbsurdity</module>
-        <module>CountingPrimes</module>
+        <module>Moderate/CountingPrimes</module>
 
     </modules>
 

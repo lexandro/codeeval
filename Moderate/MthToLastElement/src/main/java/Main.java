@@ -87,7 +87,7 @@ public class Main {
     public static class SimpleLinkedListItem<T> implements LinkedListItem<T> {
 
         private LinkedListItem<T> nextItem;
-        private T value;
+        private final T value;
 
         public SimpleLinkedListItem(T value) {
             this.value = value;
