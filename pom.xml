@@ -23,7 +23,8 @@
         <module>Moderate/LongestLines</module>
         <module>DetectingCycles</module>
         <module>Moderate/Endianness</module>
-        <module>ArrayAbsurdity</module>
+        <module>Moderate/ArrayAbsurdity</module>
+        <module>CountingPrimes</module>
 
     </modules>
 
