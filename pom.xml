@@ -23,6 +23,7 @@
         <module>Moderate/LongestLines</module>
         <module>DetectingCycles</module>
         <module>Moderate/Endianness</module>
+        <module>ArrayAbsurdity</module>
 
     </modules>
 
