@@ -26,7 +26,6 @@ public class Main {
     }
 
     private static void pointInCircle(String fileLine) {
-        String[] items = fileLine.split(";");
         Pattern signedFloat = Pattern.compile("[-]?([0-9]*\\.[0-9]+|[0-9]+)");
         Matcher matcher = signedFloat.matcher(fileLine);
         //
