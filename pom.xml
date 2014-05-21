@@ -25,6 +25,7 @@
         <module>Moderate/Endianness</module>
         <module>Moderate/ArrayAbsurdity</module>
         <module>Moderate/CountingPrimes</module>
+        <module>Moderate/PointInCircle</module>
 
     </modules>
 
