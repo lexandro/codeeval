@@ -18,6 +18,55 @@
     </properties>
 
     <modules>
+        <!-- Easy -->
+	<module>Easy/BeautifulStrings</module>
+	<module>Easy/BitPositions</module>
+	<module>Easy/CalculateDistance</module>
+	<module>Easy/CapitalizeWords</module>
+	<module>Easy/CompressedSequence</module>
+	<module>Easy/DataRecovery</module>
+	<module>Easy/EvenNumbers</module>
+	<module>Easy/FibonacciSeries</module>
+	<module>Easy/FileSize</module>
+	<module>Easy/FindAWriter</module>
+	<module>Easy/FizzBuzz</module>
+	<module>Easy/HappyNumbers</module>
+	<module>Easy/HexToDecimal</module>
+	<module>Easy/HiddenDigits</module>
+	<module>Easy/JsonMenuIds</module>
+	<module>Easy/LongestWord</module>
+	<module>Easy/LowerCase</module>
+	<module>Easy/LowestUniqueNumber</module>
+	<module>Easy/MixedContent</module>
+	<module>Easy/MorseCode</module>
+	<module>Easy/MultiplesOfANumber</module>
+	<module>Easy/MultiplicationTables</module>
+	<module>Easy/MultiplyLists</module>
+	<module>Easy/N_mod_M</module>
+	<module>Easy/OddNumbers</module>
+	<module>Easy/PenultimateWord</module>
+	<module>Easy/PrimePalindrome</module>
+	<module>Easy/QueryBoard</module>
+	<module>Easy/RacingChars</module>
+	<module>Easy/ReverseWords</module>
+	<module>Easy/RightmostChar</module>
+	<module>Easy/RoadTrip</module>
+	<module>Easy/RomanNumerals</module>
+	<module>Easy/SelfDescribingNumbers</module>
+	<module>Easy/SetIntersection</module>
+	<module>Easy/ShortestRepetition</module>
+	<module>Easy/SortSeveralNumbers</module>
+	<module>Easy/SplitTheNumber</module>
+	<module>Easy/SumOfDigits</module>
+	<module>Easy/SumOfIntegersFromFile</module>
+	<module>Easy/SumOfPrimes</module>
+	<module>Easy/SwapCase</module>
+	<module>Easy/SwapElements</module>
+	<module>Easy/TheMajorElement</module>
+	<module>Easy/UniqueElements</module>
+	<module>Easy/WordToDigit</module>
+	<module>Easy/WorkingExperience</module>
+        <!-- Moderate -->		
         <module>Moderate/MthToLastElement</module>
         <module>Moderate/FindASquare</module>
         <module>Moderate/LongestLines</module>
@@ -27,7 +76,7 @@
         <module>Moderate/CountingPrimes</module>
         <module>Moderate/PointInCircle</module>
         <module>Moderate/FirstNonRepeatedCharacter</module>
-
+        <!-- Hard -->
     </modules>
 
     <dependencies>
