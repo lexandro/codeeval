@@ -1,8 +1,5 @@
 CodeEval
 ========
 
-My solutions for CodeEval challenges. For the Moderate challenges I created Maven config, but the Easy contains only pure java classes.
+My solutions for CodeEval challenges. Currently only in Java, but later I'll try with Python too :)
 
-Maybe later I "mavenize" them.
-
-Sorry... :)

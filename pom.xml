@@ -76,6 +76,7 @@
         <module>Moderate/CountingPrimes</module>
         <module>Moderate/PointInCircle</module>
         <module>Moderate/FirstNonRepeatedCharacter</module>
+        <module>Moderate/MinimumCoins</module>
         <!-- Hard -->
     </modules>
 
