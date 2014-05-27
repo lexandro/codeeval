@@ -79,6 +79,7 @@
         <module>Moderate/MinimumCoins</module>
         <module>Moderate/RemoveCharacters</module>
         <module>Moderate/TrailingString</module>
+        <module>Moderate/StackImplementation</module>
         <!-- Hard -->
     </modules>
 
