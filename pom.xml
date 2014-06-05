@@ -82,6 +82,7 @@
         <module>Moderate/StackImplementation</module>
         <module>Easy/LettercasePercentageRatio</module>
         <module>Moderate/NumberOfOnes</module>
+        <module>Moderate/PrimeNumbers</module>
         <!-- Hard -->
     </modules>
 

@@ -18,12 +18,12 @@ public class Main {
         //
         while ((fileLine = reader.readLine()) != null) {
             if (!fileLine.isEmpty()) {
-                lettercasePercentageRatio(fileLine);
+                letterCasePercentageRatio(fileLine);
             }
         }
     }
 
-    public static void lettercasePercentageRatio(String fileLine) {
+    public static void letterCasePercentageRatio(String fileLine) {
         byte[] lineAsBytes = fileLine.getBytes();
         int counter = 0;
         for (byte theLetter : lineAsBytes) {
