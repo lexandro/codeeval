@@ -77,6 +77,7 @@
         <module>Moderate/PointInCircle</module>
         <module>Moderate/FirstNonRepeatedCharacter</module>
         <module>Moderate/MinimumCoins</module>
+        <module>Moderate/EmailValidation</module>
         <!-- Hard -->
     </modules>
 
