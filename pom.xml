@@ -77,7 +77,12 @@
         <module>Moderate/PointInCircle</module>
         <module>Moderate/FirstNonRepeatedCharacter</module>
         <module>Moderate/MinimumCoins</module>
-        <module>Moderate/EmailValidation</module>
+        <module>Moderate/RemoveCharacters</module>
+        <module>Moderate/TrailingString</module>
+        <module>Moderate/StackImplementation</module>
+        <module>Easy/LettercasePercentageRatio</module>
+        <module>Moderate/NumberOfOnes</module>
+        <module>Moderate/PrimeNumbers</module>
         <!-- Hard -->
     </modules>
 
