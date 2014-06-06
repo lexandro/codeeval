@@ -83,6 +83,7 @@
         <module>Easy/LettercasePercentageRatio</module>
         <module>Moderate/NumberOfOnes</module>
         <module>Moderate/PrimeNumbers</module>
+        <module>Moderate/ReverseAndAdd</module>
         <!-- Hard -->
     </modules>
 
