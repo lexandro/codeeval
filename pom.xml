@@ -86,6 +86,7 @@
         <module>Moderate/ReverseAndAdd</module>
         <module>Moderate/DoubleSquares</module>
         <module>Moderate/SumOfIntegers</module>
+        <module>Moderate/EmailValidation</module>
         <!-- Hard -->
     </modules>
 
