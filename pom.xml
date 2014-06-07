@@ -85,6 +85,7 @@
         <module>Moderate/PrimeNumbers</module>
         <module>Moderate/ReverseAndAdd</module>
         <module>Moderate/DoubleSquares</module>
+        <module>Moderate/SumOfIntegers</module>
         <!-- Hard -->
     </modules>
 
