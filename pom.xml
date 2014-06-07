@@ -15,6 +15,7 @@
         <!-- plugins -->
         <jdk.version>1.7</jdk.version>
         <maven.compiler.version>3.1</maven.compiler.version>
+        <caliper.version>1.0-beta-1</caliper.version>
     </properties>
 
     <modules>
@@ -87,6 +88,7 @@
         <module>Moderate/DoubleSquares</module>
         <module>Moderate/SumOfIntegers</module>
         <module>Moderate/EmailValidation</module>
+        <module>Moderate/Pangrams</module>
         <!-- Hard -->
     </modules>
 
@@ -96,6 +98,11 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.caliper</groupId>
+            <artifactId>caliper</artifactId>
+            <version>${caliper.version}</version>
         </dependency>
     </dependencies>
 
