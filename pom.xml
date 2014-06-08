@@ -89,6 +89,7 @@
         <module>Moderate/SumOfIntegers</module>
         <module>Moderate/EmailValidation</module>
         <module>Moderate/Pangrams</module>
+        <module>Moderate/PassTriangle</module>
         <!-- Hard -->
     </modules>
 
