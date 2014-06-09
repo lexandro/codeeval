@@ -91,6 +91,7 @@
         <module>Moderate/Pangrams</module>
         <module>Moderate/PassTriangle</module>
         <module>Moderate/NumberPairs</module>
+        <module>Moderate/DecimalToBinary</module>
         <!-- Hard -->
     </modules>
 
