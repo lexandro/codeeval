@@ -93,6 +93,7 @@
         <module>Moderate/NumberPairs</module>
         <module>Moderate/DecimalToBinary</module>
         <module>Moderate/SumToZero</module>
+        <module>Moderate/StringRotation</module>
         <!-- Hard -->
     </modules>
 
