@@ -92,6 +92,7 @@
         <module>Moderate/PassTriangle</module>
         <module>Moderate/NumberPairs</module>
         <module>Moderate/DecimalToBinary</module>
+        <module>Moderate/SumToZero</module>
         <!-- Hard -->
     </modules>
 
