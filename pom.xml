@@ -90,6 +90,7 @@
         <module>Moderate/EmailValidation</module>
         <module>Moderate/Pangrams</module>
         <module>Moderate/PassTriangle</module>
+        <module>Moderate/NumberPairs</module>
         <!-- Hard -->
     </modules>
 
