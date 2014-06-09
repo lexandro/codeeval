@@ -40,7 +40,7 @@ public class Main {
             int[] numbers = stringToIntArray(fileLine);
             sums = sumUpWith(sums, numbers);
         }
-        System.out.println(findMax(sums));
+        System.out.println(sums[0]);
     }
 
     private static int[] stringToIntArray(String fileLine) {
@@ -61,15 +61,5 @@ public class Main {
             }
         }
         return numbers;
-    }
-
-    private static int findMax(int[] numbers) {
-        int max = numbers[0];
-        for (int count = 1; count < numbers.length; count++) {
-            if (numbers[count] > max) {
-                max = numbers[count];
-            }
-        }
-        return max;
     }
 }
