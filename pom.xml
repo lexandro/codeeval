@@ -95,6 +95,7 @@
         <module>Moderate/SumToZero</module>
         <module>Moderate/StringRotation</module>
         <module>Moderate/ReverseGroups</module>
+        <module>Moderate/FlaviusJosephus</module>
         <!-- Hard -->
     </modules>
 
