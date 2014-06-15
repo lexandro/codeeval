@@ -98,6 +98,7 @@
         <module>Moderate/FlaviusJosephus</module>
         <module>Moderate/PascalsTriangle</module>
         <module>Moderate/CashRegister</module>
+        <module>Moderate/ValidParentheses</module>
         <!-- Hard -->
     </modules>
 
