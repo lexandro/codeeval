@@ -100,6 +100,7 @@
         <module>Moderate/CashRegister</module>
         <module>Moderate/ValidParentheses</module>
         <module>Moderate/WordChain</module>
+        <module>Moderate/LowestCommonAncestor</module>
         <!-- Hard -->
     </modules>
 
