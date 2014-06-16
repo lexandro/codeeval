@@ -35,6 +35,7 @@
         <module>Easy/HexToDecimal</module>
         <module>Easy/HiddenDigits</module>
         <module>Easy/JsonMenuIds</module>
+        <module>Easy/LettercasePercentageRatio</module>
         <module>Easy/LongestWord</module>
         <module>Easy/LowerCase</module>
         <module>Easy/LowestUniqueNumber</module>
@@ -71,7 +72,7 @@
         <module>Moderate/MthToLastElement</module>
         <module>Moderate/FindASquare</module>
         <module>Moderate/LongestLines</module>
-        <module>DetectingCycles</module>
+        <module>Moderate/DetectingCycles</module>
         <module>Moderate/Endianness</module>
         <module>Moderate/ArrayAbsurdity</module>
         <module>Moderate/CountingPrimes</module>
@@ -81,7 +82,6 @@
         <module>Moderate/RemoveCharacters</module>
         <module>Moderate/TrailingString</module>
         <module>Moderate/StackImplementation</module>
-        <module>Easy/LettercasePercentageRatio</module>
         <module>Moderate/NumberOfOnes</module>
         <module>Moderate/PrimeNumbers</module>
         <module>Moderate/ReverseAndAdd</module>
