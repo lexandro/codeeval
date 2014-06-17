@@ -101,6 +101,7 @@
         <module>Moderate/ValidParentheses</module>
         <module>Moderate/WordChain</module>
         <module>Moderate/LowestCommonAncestor</module>
+        <module>Moderate/JollyJumpers</module>
         <!-- Hard -->
     </modules>
 
