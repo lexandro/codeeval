@@ -28,7 +28,7 @@ public class Main {
         int[] numbers = stringsToIntArray(items);
         //
         for (int cycleStartIndex = 0; cycleStartIndex < numbers.length - 1; cycleStartIndex++) {
-            for (int length = 1; length < numbers.length - cycleStartIndex; length++) {
+            for (int length = 1; length < (numbers.length - cycleStartIndex) / 2; length++) {
                 if (isCycle(cycleStartIndex, length, numbers)) {
                     printCycle(cycleStartIndex, length, numbers);
                     return;
