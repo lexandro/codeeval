@@ -103,6 +103,7 @@
         <module>Moderate/LowestCommonAncestor</module>
         <module>Moderate/JollyJumpers</module>
         <module>Moderate/OverlappingRectangles</module>
+        <module>Moderate/DecodeNumbers</module>
         <!-- Hard -->
     </modules>
 
