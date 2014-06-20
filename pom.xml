@@ -104,6 +104,8 @@
         <module>Moderate/JollyJumpers</module>
         <module>Moderate/OverlappingRectangles</module>
         <module>Moderate/DecodeNumbers</module>
+        <module>Moderate/Sudoku</module>
+        <module>Easy/JugglingWithZeroes</module>
         <!-- Hard -->
     </modules>
 
