@@ -106,6 +106,7 @@
         <module>Moderate/DecodeNumbers</module>
         <module>Moderate/Sudoku</module>
         <module>Easy/JugglingWithZeroes</module>
+        <module>Moderate/UriComparison</module>
         <!-- Hard -->
     </modules>
 
