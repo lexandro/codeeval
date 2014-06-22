@@ -8,12 +8,8 @@ import java.io.FileReader;
  */
 public class Main {
 
-    private static char[] digits;
-
     public static void main(String[] args) throws Throwable {
-//        solveChallenge(args);
-        sudoku("4;1,4,2,3,2,3,1,4,4,2,3,1,3,1,4,2");
-        sudoku("4;2,1,3,2,3,2,1,4,1,4,2,3,2,3,4,1");
+        solveChallenge(args);
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
@@ -31,54 +27,43 @@ public class Main {
         String[] items = fileLine.split(";");
         String[] digits = items[1].split(",");
         int size = Integer.parseInt(items[0], 10);
-        int[] numbers = stringsToIntArray(digits);
-        //
-        if (isValidSudoku(size, numbers)) {
-            System.out.println("True");
-        } else {
+        if (!isValidSudoku(size, digits)) {
             System.out.println("False");
-        }
-
-    }
-
-    private static boolean isValidSudoku(int size, int[] numbers) {
-        if (size * size == numbers.length) {
-            // "You may assume that N will be either 4 or 9."
-            int expectedSum = size == 4 ? 10 : 45;
-            // gridcheck
-            int actualSum = 0;
-            for (int i = 0; i < size; i++) {
-                actualSum = 0;
-                for (int j = 0; j < size; j++) {
-                    int number = numbers[i * size + j];
-                    if (number > 0 && number <= size) {
-                        actualSum += number;
-                    } else {
-                        return false;
-                    }
-                }
-                if (actualSum != expectedSum) {
-                    return false;
-                }
-            }
-
-
-            // verticalcheck
-
-            // horizontalcheck
-
-
-            return true;
         } else {
-            return false;
+            System.out.println("True");
         }
     }
 
-    private static int[] stringsToIntArray(String[] numbers) {
-        int[] result = new int[numbers.length];
+    private static boolean isValidSudoku(int size, String[] digits) {
+        int[][] sudokuBoard = stringsToSudokuBoard(digits);
+        int cubeSize = Double.valueOf(Math.sqrt(size)).intValue();
+        int expectedSum = sudokuBoard[0].length == 4 ? 10 : 45;
+        //
+        for (int i = 0; i < size; i++) {
+            int rowSum = 0;
+            int columnSum = 0;
+            int gridSum = 0;
+            //
+            for (int j = 0; j < size; j++) {
+                rowSum += sudokuBoard[j][i];
+                columnSum += sudokuBoard[i][j];
+                // Huhhh. That wasn't easy...
+                gridSum += sudokuBoard[i * cubeSize % size + j % cubeSize][(i / cubeSize) * cubeSize + j / cubeSize];
+            }
+            //
+            if (!(rowSum == expectedSum) || (columnSum != expectedSum) || (gridSum != expectedSum)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static int[][] stringsToSudokuBoard(String[] numbers) {
+        int size = Double.valueOf(Math.sqrt(numbers.length)).intValue();
+        int[][] result = new int[size][size];
         int count = 0;
         for (String number : numbers) {
-            result[count++] = Integer.parseInt(number, 10);
+            result[count / size][count++ % size] = Integer.parseInt(number, 10);
         }
         return result;
     }
