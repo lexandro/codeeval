@@ -107,6 +107,7 @@
         <module>Moderate/Sudoku</module>
         <module>Easy/JugglingWithZeroes</module>
         <module>Moderate/UriComparison</module>
+        <module>Moderate/BalancedSmileys</module>
         <!-- Hard -->
     </modules>
 
