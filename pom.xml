@@ -108,6 +108,7 @@
         <module>Easy/JugglingWithZeroes</module>
         <module>Moderate/UriComparison</module>
         <module>Moderate/BalancedSmileys</module>
+        <module>Moderate/RomanAndArabic</module>
         <!-- Hard -->
     </modules>
 
