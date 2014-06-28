@@ -24,7 +24,7 @@ public class Main {
         }
     }
 
-    // implementation of http://en.wikipedia.org/wiki/Polish_notation solution
+    // java implementation of http://en.wikipedia.org/wiki/Polish_notation solution
     private static void prefixExpressions(String fileLine) {
         String[] elements = fileLine.split(" ");
         Stack<Double> operands = new Stack<>();

@@ -110,6 +110,7 @@
         <module>1-Moderate/BalancedSmileys</module>
         <module>1-Moderate/RomanAndArabic</module>
         <module>2-Hard/PrefixExpressions</module>
+        <module>1-Moderate/LostInTranslation</module>
         <!-- Hard -->
     </modules>
 
