@@ -111,6 +111,8 @@
         <module>1-Moderate/RomanAndArabic</module>
         <module>2-Hard/PrefixExpressions</module>
         <module>1-Moderate/LostInTranslation</module>
+        <module>1-Moderate/TheMinistryOfTruth</module>
+        <module>2-Hard/StringPermutation</module>
         <!-- Hard -->
     </modules>
 
