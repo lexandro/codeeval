@@ -113,6 +113,7 @@
         <module>1-Moderate/LostInTranslation</module>
         <module>1-Moderate/TheMinistryOfTruth</module>
         <module>2-Hard/StringPermutation</module>
+        <module>1-Moderate/SeekForAnIntruder</module>
         <!-- Hard -->
     </modules>
 
