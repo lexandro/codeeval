@@ -114,6 +114,7 @@
         <module>1-Moderate/TheMinistryOfTruth</module>
         <module>2-Hard/StringPermutation</module>
         <module>1-Moderate/SeekForAnIntruder</module>
+        <module>1-Moderate/ChainInspection</module>
         <module>1-Moderate/SequenceTransformation</module>
         <!-- Hard -->
     </modules>
