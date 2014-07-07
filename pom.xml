@@ -35,7 +35,7 @@
         <module>0-Easy/HexToDecimal</module>
         <module>0-Easy/HiddenDigits</module>
         <module>0-Easy/JsonMenuIds</module>
-        <module>0-Easy/LettercasePercentageRatio</module>
+        <module>0-Easy/LetterCasePercentageRatio</module>
         <module>0-Easy/LongestWord</module>
         <module>0-Easy/LowerCase</module>
         <module>0-Easy/LowestUniqueNumber</module>
@@ -114,6 +114,7 @@
         <module>1-Moderate/TheMinistryOfTruth</module>
         <module>2-Hard/StringPermutation</module>
         <module>1-Moderate/SeekForAnIntruder</module>
+        <module>1-Moderate/SequenceTransformation</module>
         <!-- Hard -->
     </modules>
 

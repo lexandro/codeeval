@@ -14,7 +14,7 @@ import static java.lang.Long.valueOf;
   Author: Robert Stern (lexandro2000@gmail.com)
   All of my solutions are available from https://github.com/lexandro/codeeval
  */
-public class Main {
+public class MainOld {
 
     //
     private static Pattern dottedHex = Pattern.compile("0[x]([0-9a-f]?[0-9a-f])\\.0[x]([0-9a-f]?[0-9a-f])\\.0[x]([0-9a-f]?[0-9a-f])\\.0[x]([0-9a-f]?[0-9a-f])");
@@ -45,14 +45,6 @@ public class Main {
     public static void main(String[] args) throws Throwable {
         //
         solveChallenge(args);
-//        System.out.println(valueOf("10", 10) * IP_4_MULTIPLIER);
-//        System.out.println(valueOf("10", 10) << 24);
-//        System.out.println(32445141 / IP_4_MULTIPLIER);
-//        System.out.println(32445141 / IP_3_MULTIPLIER);
-//        System.out.println(32445141 / IP_2_MULTIPLIER);
-//        System.out.println(32445141 >> 24);
-//        System.out.println(32445141 >> 16);
-//        System.out.println(32445141 >> 8);
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
@@ -162,6 +154,6 @@ public class Main {
             this.pattern = pattern;
             this.radix = radix;
         }
-   }
+    }
 
 }
