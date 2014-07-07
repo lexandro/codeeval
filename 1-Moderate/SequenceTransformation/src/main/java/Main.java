@@ -13,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws Throwable {
 //        solveChallenge(args);
-//        sequenceTransformation("1010 AAAAABBBBAAAA");
-//        sequenceTransformation("01001110 AAAABAAABBBBBBAAAAAAA");
+        sequenceTransformation("1010 AAAAABBBBAAAA");
+        sequenceTransformation("01001110 AAAABAAABBBBBBAAAAAAA");
         sequenceTransformation("1100110 BBAABABBA");
         sequenceTransformation("00 AAAAAA");
     }
@@ -35,23 +35,22 @@ public class Main {
         digits = fileLine.substring(0, pos);
         letters = fileLine.substring(pos + 1, fileLine.length());
         //
-        System.out.println(checkSequence(0, 0));
-        System.out.println(fileLine);
+        System.out.println(fileLine + " " + (checkSequence(0, 0) ? "Yes" : "No"));
     }
 
-    private static boolean checkSequence(int digitIndex, int sequenceIndex) {
-        char sequenceChar = sequenceIndex < letters.length() ? letters.charAt(sequenceIndex) : ' ';
+    private static boolean checkSequence(int digitIndex, int letterIndex) {
         //
-        if (digitIndex < digits.length()) {
-            while (sequenceIndex < letters.length()) {
-                if (isApply(digitIndex, sequenceIndex, sequenceChar)) {
-                    if (checkSequence(digitIndex + 1, sequenceIndex + 1)) {
+        if (digitIndex < digits.length() && letterIndex < letters.length()) {
+            char expectedSequenceChar = letters.charAt(letterIndex);
+            while (letterIndex < letters.length()) {
+                if (isApply(digitIndex, letterIndex, expectedSequenceChar)) {
+                    if (checkSequence(digitIndex + 1, letterIndex + 1)) {
                         return true;
                     }
                 } else {
                     return false;
                 }
-                sequenceIndex++;
+                letterIndex++;
             }
         }
         return digitIndex == digits.length();
@@ -61,6 +60,6 @@ public class Main {
     private static boolean isApply(int digitIndex, int sequenceIndex, char sequenceChar) {
         char digit = digits.charAt(digitIndex);
         char letter = letters.charAt(sequenceIndex);
-        return (letter == sequenceChar) && (digit == '0' && letter == 'A') || (digit == '1' && (letter == 'A' || letter == 'B'));
+        return (letter == sequenceChar) && ((digit == '0' && letter == 'A') || (digit == '1' && (letter == 'A' || letter == 'B')));
     }
 }
