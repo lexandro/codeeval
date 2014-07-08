@@ -1,0 +1,10 @@
+# Build Environment
+build_environment: ubuntu1204
+
+# language setting
+language: java
+
+jdk:
+ - oraclejdk7
+
+mvn install -DskipTests=true
