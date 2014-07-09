@@ -15,7 +15,8 @@ public class Main {
     private static boolean haltFlag;
 
     public static void main(String[] args) throws Throwable {
-        solveChallenge(args);
+//        solveChallenge(args);
+        solveChallenge(new String[]{"C:\\Projects\\scala\\src\\main\\scala\\input.txt"});
 //        sequenceTransformation("1010 AAAAABBBBAAAA");
 //        sequenceTransformation("01001110 AAAABAAABBBBBBAAAAAAA");
 //        sequenceTransformation("1100110 BBAABABBA");
@@ -118,15 +119,15 @@ public class Main {
             while (letterIndex < letters.length() && !haltFlag) {
                 if (isApply(digitIndex, letterIndex, expectedSequenceChar)) {
                     if (checkSequence(digitIndex + 1, letterIndex + 1)) {
-                        if (digitIndex + 1 == digits.length()) {
-                            while (letterIndex < letters.length()) {
-                                if (letters.charAt(letterIndex) != expectedSequenceChar) {
-                                    haltFlag = true;
-                                    return false;
-                                }
-                                letterIndex++;
-                            }
-                        }
+//                        if (digitIndex + 1 == digits.length()) {
+//                            while (letterIndex < letters.length()) {
+//                                if (letters.charAt(letterIndex) != expectedSequenceChar) {
+//                                    haltFlag = true;
+//                                    return false;
+//                                }
+//                                letterIndex++;
+//                            }
+//                        }
                         return true;
                     }
                 } else {
