@@ -116,6 +116,7 @@
         <module>1-Moderate/SeekForAnIntruder</module>
         <module>1-Moderate/ChainInspection</module>
         <module>1-Moderate/SequenceTransformation</module>
+        <module>0-Easy/AgeDestribution</module>
         <!-- Hard -->
     </modules>
 
