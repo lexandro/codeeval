@@ -117,6 +117,7 @@
         <module>1-Moderate/ChainInspection</module>
         <module>1-Moderate/SequenceTransformation</module>
         <module>0-Easy/AgeDestribution</module>
+        <module>1-Moderate/APileOfBricks</module>
         <!-- Hard -->
     </modules>
 
