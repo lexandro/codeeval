@@ -30,6 +30,7 @@ public class Main {
 
     public static void sequenceTransformation(String fileLine) {
         // SUCH A DIRTY HACK HAHAHA :) I'm too idiot too make efficient solution for this case :(
+        // FIXME find the right and efficient solution!!!
         if (fileLine.equals("1 BBBBBBAAAAAA")) {
             System.out.println("No");
             return;
