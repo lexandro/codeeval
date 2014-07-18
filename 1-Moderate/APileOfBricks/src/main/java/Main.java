@@ -4,18 +4,19 @@ import java.io.FileReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
-  All of my solutions are available from https://github.com/lexandro/codeeval
+  All of my solutions are available createFrom https://github.com/lexandro/codeeval
  */
 public class Main {
 
     private static final Pattern DECIMAL_PATTERN = Pattern.compile("-?\\d+");
 
     public static void main(String[] args) throws Throwable {
-//        solveChallenge(args);
-        aPileOfBricks("[4,3] [3,-3]|(1 [10,9,4] [9,4,2])");
-//        aPileOfBricks("[67,14] [93,8]|(1 [-29,-74,-87] [10,-83,90]);(2 [-90,-33,32] [43,22,26]);(3 [-3,92,-44] [-59,96,-74]);(4 [-40,-8,70] [49,-87,53]);(5 [59,-16,30] [46,42,40]);(6 [-31,-1,-23] [-74,97,-11]);(7 [28,74,-60] [-97,35,12]);(8 [9,76,41] [-80,-90,-13]);(9 [-14,42,-99] [0,-27,71]);(10 [-20,38,27] [-2,-12,-66])");
+        solveChallenge(args);
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
@@ -25,94 +26,109 @@ public class Main {
         while ((fileLine = reader.readLine()) != null) {
             if (!fileLine.isEmpty()) {
                 aPileOfBricks(fileLine);
-
             }
         }
     }
 
     private static void aPileOfBricks(String fileLine) {
         String[] items = fileLine.split(Pattern.quote("|"));
-        Hole hole = Hole.from(items[0]);
+        Hole hole = Hole.createFrom(items[0]);
         String[] bricksData = items[1].split(";");
-        for (String brickData : bricksData) {
-            Brick brick = Brick.from(brickData);
-            if (hole.isFits(brick)) {
-                System.out.println(brick.index);
+        //
+        boolean[] brickFits = listSmallBricks(hole, bricksData);
+        //
+        StringBuilder result = createSortedListTextOfSmallBricks(brickFits);
+        System.out.println(result.length() == 0 ? '-' : result.toString());
+    }
+
+    private static boolean[] listSmallBricks(Main.Hole hole, String[] bricksData) {
+        boolean[] brickFits = new boolean[bricksData.length];
+        for (int i = 0; i < bricksData.length; i++) {
+            Main.Brick brick = Main.Brick.createFrom(bricksData[i]);
+            if (hole.isBiggerThan(brick)) {
+                brickFits[i] = true;
             }
         }
-        BrickSide a = null;
-        //
+        return brickFits;
+    }
 
+    private static StringBuilder createSortedListTextOfSmallBricks(boolean[] brickFits) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < brickFits.length; i++) {
+            if (brickFits[i]) {
+                result.append(i + 1).append(',');
+            }
+        }
+        if (result.length() > 0) {
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result;
     }
 
 
-    private static class Hole {
-        int x1;
-        int x2;
-        int y1;
-        int y2;
+    private static class Hole extends Rectangle {
 
-        public static Hole from(String item) {
-            Hole result = new Hole();
-            MatcherReader matcherReader = MatcherReader.fromMatcher(DECIMAL_PATTERN.matcher(item));
-            result.x1 = matcherReader.nextInt();
-            result.y1 = matcherReader.nextInt();
-            result.x2 = matcherReader.nextInt();
-            result.y2 = matcherReader.nextInt();
-
-            return result;
+        private Hole(int x1, int y1, int x2, int y2) {
+            super(x1, y1, x2, y2);
         }
 
-        public boolean isFits(Brick brick) {
+        public static Hole createFrom(String holeString) {
+            MatcherReader matcherReader = MatcherReader.fromMatcher(DECIMAL_PATTERN.matcher(holeString));
+            //
+            int x1 = matcherReader.nextInt();
+            int y1 = matcherReader.nextInt();
+            int x2 = matcherReader.nextInt();
+            int y2 = matcherReader.nextInt();
+            //
+            return new Hole(x1, y1, x2, y2);
+        }
 
-            return true;
+        public boolean isBiggerThan(Brick brick) {
+            for (Rectangle side : brick.brickSides) {
+                if (side.width <= width && side.height <= height) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
     private static class Brick {
         int index;
-        int x1;
-        int y1;
-        int z1;
-        int x2;
-        int y2;
-        int z2;
-        BrickSide[] brickSides;
+        Rectangle[] brickSides;
 
-        public static Brick from(String brickData) {
-            Brick result = new Brick();
+        private static Brick createFrom(String brickData) {
             MatcherReader matcherReader = MatcherReader.fromMatcher(DECIMAL_PATTERN.matcher(brickData));
-            result.index = matcherReader.nextInt();
-            result.x1 = matcherReader.nextInt();
-            result.y1 = matcherReader.nextInt();
-            result.z1 = matcherReader.nextInt();
-            result.x2 = matcherReader.nextInt();
-            result.y2 = matcherReader.nextInt();
-            result.z2 = matcherReader.nextInt();
             //
-            result.brickSides = new BrickSide[3];
-            BrickSide brickSide = new BrickSide(result.x1, result.y1, result.x2, result.y2);
-            result.brickSides[0] = brickSide;
-            brickSide = new BrickSide(result.x1, result.z1, result.x2, result.z2);
-            result.brickSides[1] = brickSide;
-            brickSide = new BrickSide(result.y1, result.z1, result.y2, result.z2);
-            result.brickSides[2] = brickSide;
+            Brick result = new Brick();
+            result.index = matcherReader.nextInt();
+            int x1 = matcherReader.nextInt();
+            int y1 = matcherReader.nextInt();
+            int z1 = matcherReader.nextInt();
+            int x2 = matcherReader.nextInt();
+            int y2 = matcherReader.nextInt();
+            int z2 = matcherReader.nextInt();
+            //
+            result.brickSides = new Rectangle[3];
+            result.brickSides[0] = new Rectangle(x1, y1, x2, y2);
+            result.brickSides[1] = new Rectangle(x1, z1, x2, z2);
+            result.brickSides[2] = new Rectangle(y1, z1, y2, z2);
 
             return result;
         }
     }
 
-    private static class BrickSide {
-        int x1;
-        int y1;
-        int x2;
-        int y2;
+    private static class Rectangle {
 
-        private BrickSide(int x1, int y1, int x2, int y2) {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
+        protected int width;
+        protected int height;
+
+        private Rectangle(int x1, int y1, int x2, int y2) {
+            int sideA = max(Math.abs(x1 - x2), Math.abs(x2 - x1));
+            int sideB = max(Math.abs(y1 - y2), Math.abs(y2 - y1));
+            //
+            width = max(sideA, sideB);
+            height = min(sideA, sideB);
         }
     }
 
@@ -124,15 +140,17 @@ public class Main {
         }
 
         public static MatcherReader fromMatcher(Matcher matcher) {
-            MatcherReader result = new MatcherReader(matcher);
-            return result;
+            return new MatcherReader(matcher);
         }
 
         public int nextInt() {
-            matcher.find();
-            return Integer.parseInt(matcher.group(), 10);
+            if (matcher.find()) {
+                return Integer.parseInt(matcher.group(), 10);
+            } else {
+                throw new IllegalArgumentException("No more matching item left!");
+            }
+
         }
     }
-
 
 }

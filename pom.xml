@@ -118,6 +118,7 @@
         <module>1-Moderate/SequenceTransformation</module>
         <module>0-Easy/AgeDestribution</module>
         <module>1-Moderate/APileOfBricks</module>
+        <module>1-Moderate/Locks</module>
         <!-- Hard -->
     </modules>
 
