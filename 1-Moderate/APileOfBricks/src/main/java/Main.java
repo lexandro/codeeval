@@ -40,6 +40,7 @@ public class Main {
                 System.out.println(brick.index);
             }
         }
+        BrickSide a = null;
         //
 
     }
@@ -53,11 +54,11 @@ public class Main {
 
         public static Hole from(String item) {
             Hole result = new Hole();
-            MatcherReader.setMatcher(DECIMAL_PATTERN.matcher(item));
-            result.x1 = MatcherReader.nextInt();
-            result.y1 = MatcherReader.nextInt();
-            result.x2 = MatcherReader.nextInt();
-            result.y2 = MatcherReader.nextInt();
+            MatcherReader matcherReader = MatcherReader.fromMatcher(DECIMAL_PATTERN.matcher(item));
+            result.x1 = matcherReader.nextInt();
+            result.y1 = matcherReader.nextInt();
+            result.x2 = matcherReader.nextInt();
+            result.y2 = matcherReader.nextInt();
 
             return result;
         }
@@ -76,32 +77,62 @@ public class Main {
         int x2;
         int y2;
         int z2;
+        BrickSide[] brickSides;
 
         public static Brick from(String brickData) {
             Brick result = new Brick();
-            MatcherReader.setMatcher(DECIMAL_PATTERN.matcher(brickData));
-            result.index = MatcherReader.nextInt();
-            result.x1 = MatcherReader.nextInt();
-            result.y1 = MatcherReader.nextInt();
-            result.z1 = MatcherReader.nextInt();
-            result.x2 = MatcherReader.nextInt();
-            result.y2 = MatcherReader.nextInt();
-            result.z2 = MatcherReader.nextInt();
+            MatcherReader matcherReader = MatcherReader.fromMatcher(DECIMAL_PATTERN.matcher(brickData));
+            result.index = matcherReader.nextInt();
+            result.x1 = matcherReader.nextInt();
+            result.y1 = matcherReader.nextInt();
+            result.z1 = matcherReader.nextInt();
+            result.x2 = matcherReader.nextInt();
+            result.y2 = matcherReader.nextInt();
+            result.z2 = matcherReader.nextInt();
+            //
+            result.brickSides = new BrickSide[3];
+            BrickSide brickSide = new BrickSide(result.x1, result.y1, result.x2, result.y2);
+            result.brickSides[0] = brickSide;
+            brickSide = new BrickSide(result.x1, result.z1, result.x2, result.z2);
+            result.brickSides[1] = brickSide;
+            brickSide = new BrickSide(result.y1, result.z1, result.y2, result.z2);
+            result.brickSides[2] = brickSide;
+
             return result;
         }
     }
 
+    private static class BrickSide {
+        int x1;
+        int y1;
+        int x2;
+        int y2;
+
+        private BrickSide(int x1, int y1, int x2, int y2) {
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+        }
+    }
 
     private static class MatcherReader {
-        private static Matcher matcher;
+        private Matcher matcher;
 
-        public static void setMatcher(Matcher matcher) {
-            MatcherReader.matcher = matcher;
+        public MatcherReader(Matcher matcher) {
+            this.matcher = matcher;
         }
 
-        public static int nextInt() {
+        public static MatcherReader fromMatcher(Matcher matcher) {
+            MatcherReader result = new MatcherReader(matcher);
+            return result;
+        }
+
+        public int nextInt() {
             matcher.find();
             return Integer.parseInt(matcher.group(), 10);
         }
     }
+
+
 }
