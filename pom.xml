@@ -119,6 +119,7 @@
         <module>0-Easy/AgeDestribution</module>
         <module>1-Moderate/APileOfBricks</module>
         <module>1-Moderate/Locks</module>
+        <module>2-Hard/LevenshteinDistance</module>
         <!-- Hard -->
     </modules>
 
