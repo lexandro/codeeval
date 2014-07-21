@@ -1,9 +1,15 @@
+import sun.misc.Unsafe;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
+import static java.lang.Math.min;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
@@ -31,11 +37,11 @@ public class Main {
             if (fileLine.charAt(0) == 'E') {
                 break;
             }
-            loadWords(fileLine);
+            addToWordList(fileLine);
         }
         // Second part, load dictionary for comparison
         while ((fileLine = reader.readLine()) != null) {
-            loadDictionary(fileLine);
+            addToDictionary(fileLine);
         }
         dictArray = toArray(dictionary);
         System.out.println(System.currentTimeMillis());
@@ -44,7 +50,6 @@ public class Main {
     }
 
     private static void listLevenshteinDistances() {
-
         //
         for (Node word : words) {
             System.out.println(countSocialNetworkFor(word));
@@ -76,12 +81,12 @@ public class Main {
         }
     }
 
-    private static void loadWords(String fileLine) {
+    private static void addToWordList(String fileLine) {
         Node node = new Node(fileLine);
         words.add(node);
     }
 
-    private static void loadDictionary(String fileLine) {
+    private static void addToDictionary(String fileLine) {
         Node node = new Node(fileLine);
         dictionary.add(node);
     }
@@ -91,17 +96,17 @@ public class Main {
         String word1 = node1.word;
         String word2 = node2.word;
         // default difference starts with length comparison
-        int diff = abs(word1.length() - word2.length());
-        if (diff < 2) {
-            int minLength = Math.min(word1.length(), word2.length());
+        int difference = abs(word1.length() - word2.length());
+        if (difference < 2) {
+            int minLength = min(word1.length(), word2.length());
             int i = 0;
-            while (diff < 2 && i < minLength) {
+            while (difference < 2 && i < minLength) {
                 if (word1.charAt(i) != word2.charAt(i)) {
-                    diff++;
+                    difference++;
                 }
                 i++;
             }
-            return diff < 2;
+            return difference < 2;
         } else {
             return false;
         }
