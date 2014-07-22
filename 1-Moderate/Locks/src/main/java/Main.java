@@ -9,10 +9,9 @@ import java.io.FileReader;
 public class Main {
 
     public static void main(String[] args) throws Throwable {
-        solveChallenge(args);
-//        locks("3 1");
-//        locks("100 3");
-//        locks("100 100");
+//        solveChallenge(args);
+        locks("3 1");
+        locks("100 100");
     }
 
 
@@ -28,7 +27,7 @@ public class Main {
         }
     }
 
-    private static void locks(String fileLine) {
+    protected static void locks(String fileLine) {
 
         String[] items = fileLine.split(" ");
         int numberOfDoors = Integer.parseInt(items[0], 10);
@@ -39,28 +38,32 @@ public class Main {
 
         //
         if (requiredRepetitions > 1) {
-            boolean isEven = (requiredRepetitions & 1) == 0;
-            for (int i = 0; i < doors.length; i++) {
-                if (i % 3 != 0 && i % 2 == 0) {
-                    doors[i] = true;
-                } else if (i % 3 == 0 && i % 2 != 0) {
-                    doors[i] = isEven;
-                }
-            }
-
-//            int counter = 1;
-//            while (counter < requiredRepetitions) {
-//                for (int i = 0; i < numberOfDoors; i += 2) {
+//            boolean isEven = (requiredRepetitions & 1) == 0;
+//            for (int i = 0; i < doors.length; i++) {
+//                if (i % 3 != 0 && i % 2 == 0) {
 //                    doors[i] = true;
+//                } else if (i % 3 == 0 && i % 2 != 0) {
+//                    doors[i] = isEven;
 //                }
-//                for (int i = 0; i < numberOfDoors; i += 3) {
-//                    doors[i] = !doors[i];
-//                }
-//                counter++;
 //            }
+
+            int counter = 1;
+            int i = 0;
+            // let's do it in m-1 times.
+            while (counter < requiredRepetitions) {
+                for (i = 0; i < numberOfDoors; i += 2) {
+                    doors[i] = true;
+                }
+
+                for (i = 0; i < numberOfDoors; i += 3) {
+                    doors[i] = !doors[i];
+                }
+                counter++;
+            }
         }
-        // Mth step
         doors[numberOfDoors - 1] = !doors[numberOfDoors - 1];
+        // Mth step
+
 
         int count = calculateOpenDoors(doors);
         System.out.println(count);

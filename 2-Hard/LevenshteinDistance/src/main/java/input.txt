@@ -1,5 +1,5 @@
-recursiveness
 elastic
+recursiveness
 macrographies
 END OF INPUT
 aa

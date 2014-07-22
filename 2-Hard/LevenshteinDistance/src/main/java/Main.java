@@ -3,10 +3,7 @@ import sun.misc.Unsafe;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
@@ -17,9 +14,9 @@ import static java.lang.Math.min;
  */
 public class Main {
 
-    private static boolean isInputEnded = false;
     private static List<Node> words = new LinkedList<>();
     private static List<Node> dictionary = new LinkedList<>();
+    //
     private static Node[] dictArray;
 
 
@@ -31,7 +28,6 @@ public class Main {
         BufferedReader reader = new BufferedReader(new FileReader(new File(args[0])));
         String fileLine;
         //
-        System.out.println(System.currentTimeMillis());
         // Load wordlist
         while ((fileLine = reader.readLine()) != null) {
             if (fileLine.charAt(0) == 'E') {
@@ -44,9 +40,7 @@ public class Main {
             addToDictionary(fileLine);
         }
         dictArray = toArray(dictionary);
-        System.out.println(System.currentTimeMillis());
         listLevenshteinDistances();
-        System.out.println(System.currentTimeMillis());
     }
 
     private static void listLevenshteinDistances() {
@@ -57,14 +51,38 @@ public class Main {
     }
 
     private static int countSocialNetworkFor(Node socialWord) {
-        for (Node dictWord : dictArray) {
-            if (areFriends(socialWord, dictWord)) {
-                socialWord.addFriend(dictWord);
-                dictWord.addFriend(socialWord);
-//                System.out.print(socialWord + " " + dictWord);
+        createNetworkFor(socialWord);
+        //
+        Set<Node> network = listNetworkFor(socialWord, new HashSet<Node>());
+        return network.size();
+    }
+
+    private static Set<Node> listNetworkFor(Node socialWord, Set<Node> network) {
+        network.addAll(socialWord.friends);
+        //
+        for (Node friend : socialWord.friends) {
+            for (Node friendOfFriend : friend.friends) {
+                if (!network.contains(friendOfFriend)) {
+                    network.add(friendOfFriend);
+                    listNetworkFor(friendOfFriend, network);
+                }
             }
         }
-        return socialWord.friends.size();
+        return network;
+    }
+
+    private static void createNetworkFor(Main.Node socialWord) {
+        for (Main.Node dictWord : dictArray) {
+            if (areFriends(socialWord, dictWord) && socialWord != dictWord) {
+                if (socialWord.friends == null) {
+                    socialWord.addFriend(dictWord);
+                    createNetworkFor(dictWord);
+                } else {
+                    socialWord.addFriend(dictWord);
+                }
+                dictWord.addFriend(socialWord);
+            }
+        }
     }
 
     private static Node[] toArray(List<Node> nodeList) {
@@ -126,6 +144,13 @@ public class Main {
             }
             //
             friends.add(friend);
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "word='" + word + '\'' +
+                    '}';
         }
     }
 }
