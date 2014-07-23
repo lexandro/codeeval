@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Arrays;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
@@ -10,8 +11,9 @@ public class Main {
 
     public static void main(String[] args) throws Throwable {
 //        solveChallenge(args);
-        locks("3 1");
-        locks("100 100");
+        locks("10 4");
+//        locks("3 1");
+//        locks("100 100");
     }
 
 
@@ -54,14 +56,17 @@ public class Main {
                 for (i = 0; i < numberOfDoors; i += 2) {
                     doors[i] = true;
                 }
+                System.out.println(Arrays.toString(doors));
 
                 for (i = 0; i < numberOfDoors; i += 3) {
                     doors[i] = !doors[i];
                 }
+                System.out.println(Arrays.toString(doors));
                 counter++;
             }
         }
         doors[numberOfDoors - 1] = !doors[numberOfDoors - 1];
+        System.out.println(Arrays.toString(doors));
         // Mth step
 
 
