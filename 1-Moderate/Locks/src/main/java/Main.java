@@ -1,19 +1,30 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
-  All of my solutions are available createFrom https://github.com/lexandro/codeeval
+  All of my solutions are available from https://github.com/lexandro/codeeval
  */
 public class Main {
 
     public static void main(String[] args) throws Throwable {
-//        solveChallenge(args);
-        locks("10 4");
-//        locks("3 1");
-//        locks("100 100");
+        solveChallenge(args);
+//        locks("96 2");
+//        locks("97 2");
+//        locks("98 2");
+//        locks("99 2");
+//        locks("100 2");
+//        locks("101 2");
+//        locks("102 2");
+//        locks("103 2");
+//        locks("104 2");
+//        locks("105 2");
+//        locks("106 2");
+//        locks("908 2");
+//        locks("908 6");
+//        locks("601 6");
+//        locks("962 10");
     }
 
 
@@ -24,13 +35,12 @@ public class Main {
         while ((fileLine = reader.readLine()) != null) {
             if (!fileLine.isEmpty()) {
                 locks(fileLine);
-
             }
         }
     }
 
     protected static void locks(String fileLine) {
-
+//        System.out.println(fileLine);
         String[] items = fileLine.split(" ");
         int numberOfDoors = Integer.parseInt(items[0], 10);
         int requiredRepetitions = Integer.parseInt(items[1], 10);
@@ -40,38 +50,39 @@ public class Main {
 
         //
         if (requiredRepetitions > 1) {
-//            boolean isEven = (requiredRepetitions & 1) == 0;
-//            for (int i = 0; i < doors.length; i++) {
-//                if (i % 3 != 0 && i % 2 == 0) {
-//                    doors[i] = true;
-//                } else if (i % 3 == 0 && i % 2 != 0) {
-//                    doors[i] = isEven;
-//                }
+//            boolean isEvenAmountOfDoors = (numberOfDoors & 1) == 0;
+//            boolean isEvenAmountOfRepetitions = (requiredRepetitions & 1) == 0;
+//            int result = 0;
+//            if (isEvenAmountOfRepetitions) {
+//                result = numberOfDoors / 2;
+//            } else {
+//                result = (numberOfDoors * 2) / 3 + 1;
 //            }
+//            if (!isEvenAmountOfDoors) {
+//
+//                if (isEvenAmountOfRepetitions) {
+//                    result--;
+//                } else {
+//                    result -= 2;
+//                }
+//
+//            }
+//            System.out.println("q " + result);
 
-            int counter = 1;
-            int i = 0;
-            // let's do it in m-1 times.
-            while (counter < requiredRepetitions) {
-                for (i = 0; i < numberOfDoors; i += 2) {
-                    doors[i] = true;
+            boolean isEven = (requiredRepetitions & 1) == 0;
+            for (int i = 1; i <= doors.length; i++) {
+                if (i % 3 != 0 && i % 2 == 0) {
+                    doors[i - 1] = true;
+                } else if (i % 3 == 0 && i % 2 != 0) {
+                    doors[i - 1] = isEven;
                 }
-                System.out.println(Arrays.toString(doors));
-
-                for (i = 0; i < numberOfDoors; i += 3) {
-                    doors[i] = !doors[i];
-                }
-                System.out.println(Arrays.toString(doors));
-                counter++;
             }
+            doors[numberOfDoors - 1] = !doors[numberOfDoors - 1];
+            int count = calculateOpenDoors(doors);
+            System.out.println(count);
+        } else {
+            System.out.println(numberOfDoors - 1);
         }
-        doors[numberOfDoors - 1] = !doors[numberOfDoors - 1];
-        System.out.println(Arrays.toString(doors));
-        // Mth step
-
-
-        int count = calculateOpenDoors(doors);
-        System.out.println(count);
     }
 
     private static int calculateOpenDoors(boolean[] doors) {
