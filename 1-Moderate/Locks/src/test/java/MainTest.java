@@ -3,9 +3,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MainTest {
 
@@ -30,6 +29,6 @@ public class MainTest {
         // when
         Main.locks("100 100");
         // then
-//        assertEquals("50", outStream.toString().trim());
+        assertEquals("50", outStream.toString().trim());
     }
 }
