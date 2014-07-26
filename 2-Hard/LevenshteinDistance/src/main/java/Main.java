@@ -1,5 +1,3 @@
-import sun.misc.Unsafe;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,6 +14,7 @@ public class Main {
 
     private static List<Node> words = new LinkedList<>();
     private static List<Node> dictionary = new LinkedList<>();
+    private static Map<Node, Node> network = new HashMap<>();
     //
     private static Node[] dictArray;
 
@@ -40,6 +39,7 @@ public class Main {
             addToDictionary(fileLine);
         }
         dictArray = toArray(dictionary);
+        network = new HashMap<>();
         listLevenshteinDistances();
     }
 
@@ -71,18 +71,33 @@ public class Main {
         return network;
     }
 
-    private static void createNetworkFor(Main.Node socialWord) {
-        for (Main.Node dictWord : dictArray) {
-            if (areFriends(socialWord, dictWord) && socialWord != dictWord) {
-                if (socialWord.friends == null) {
-                    socialWord.addFriend(dictWord);
-                    createNetworkFor(dictWord);
-                } else {
-                    socialWord.addFriend(dictWord);
+    private static void createNetworkFor(Node word) {
+        word.friends = collectFriendsFor(word);
+        createNetworkFor(word.friends);
+
+    }
+
+    private static void createNetworkFor(Set<Node> words) {
+        for (Node word : words) {
+            if (word.friends == null) {
+                for (Node dictWord : dictArray) {
+                    if (areFriends(word, dictWord) && !word.equals(dictWord)) {
+                        word.addFriend(dictWord);
+
+                    }
                 }
-                dictWord.addFriend(socialWord);
             }
         }
+    }
+
+    private static Set<Node> collectFriendsFor(Node socialWord) {
+        Set<Node> result = new HashSet<>();
+        for (Node dictWord : dictArray) {
+            if (areFriends(socialWord, dictWord)) {
+                result.add(dictWord);
+            }
+        }
+        return result;
     }
 
     private static Node[] toArray(List<Node> nodeList) {
@@ -92,15 +107,16 @@ public class Main {
         return dictArray;
     }
 
-    private static void toArray(List<Node> nodeList, Main.Node[] dictArray) {
+    private static void toArray(List<Node> nodeList, Node[] dictArray) {
         int i = 0;
-        for (Main.Node node : nodeList) {
+        for (Node node : nodeList) {
             dictArray[i++] = node;
         }
     }
 
     private static void addToWordList(String fileLine) {
         Node node = new Node(fileLine);
+        node.type = 1;
         words.add(node);
     }
 
@@ -133,6 +149,7 @@ public class Main {
     private static class Node {
         private String word;
         private Set<Node> friends;
+        private int type;
 
         public Node(String word) {
             this.word = word;
@@ -144,6 +161,23 @@ public class Main {
             }
             //
             friends.add(friend);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Node node = (Node) o;
+
+            if (word != null ? !word.equals(node.word) : node.word != null) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            return word != null ? word.hashCode() : 0;
         }
 
         @Override

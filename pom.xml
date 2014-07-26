@@ -120,6 +120,7 @@
         <module>1-Moderate/APileOfBricks</module>
         <module>1-Moderate/Locks</module>
         <module>2-Hard/LevenshteinDistance</module>
+        <module>2-Hard/IpPackage</module>
         <!-- Hard -->
     </modules>
 
