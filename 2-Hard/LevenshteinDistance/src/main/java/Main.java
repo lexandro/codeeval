@@ -18,6 +18,21 @@ public class Main {
 
     public static void main(String[] args) throws Throwable {
         solveChallenge(args);
+        Node node1 = null;
+        Node node2 = null;
+        //
+        node1 = new Node("abcde");
+        node2 = new Node("abcee");
+        System.out.println(node1.isFriend(node2));
+        //
+        node1 = new Node("abcde");
+        node2 = new Node("abcede");
+        System.out.println(node1.isFriend(node2));
+        //
+        node1 = new Node("hello");
+        node2 = new Node("aahed");
+        System.out.println(node1.isFriend(node2));
+
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
@@ -95,7 +110,7 @@ class Dictionary {
         while (i < wordLength + 2 && i <= nodes.length) {
             if (nodes[i] != null) {
                 for (Node dictNode : nodes[i]) {
-                    if (node.isFriend(dictNode)) {
+                    if (node.isFriend(dictNode) || levenshteinDistance(node.word, dictNode.word) < 2) {
                         result.add(dictNode);
                     }
                 }
@@ -176,8 +191,7 @@ class Node {
         // default difference starts with length comparison
         int difference = abs(word1.length() - word2.length());
         if (difference < 2) {
-            difference += calculateDifference(word1, word2);
-            return difference < 2;
+            return calculateDifference(word1, word2) < 2;
         } else {
             return false;
         }
@@ -185,42 +199,46 @@ class Node {
 
 
     private int calculateDifference(String word1, String word2) {
-        boolean differentSize = false;
+        if (word1.length() != word2.length()) {
+            return calculateForDifferentSize(word1, word2);
+        } else {
+            return calculateForSameSize(word1, word2);
+        }
+    }
+
+    private int calculateForDifferentSize(String word1, String word2) {
         if (word1.length() > word2.length()) {
             String temp = word1;
             word1 = word2;
             word2 = temp;
-            differentSize = true;
         }
-        //
         int i = 0;
         int difference = 0;
         while (i < word1.length()) {
             if (word1.charAt(i) != word2.charAt(i + difference)) {
                 difference++;
-                if (!differentSize || difference > 1) {
+                if (difference > 1) {
                     break;
                 }
             } else {
                 i++;
             }
         }
-//        while (
-//                (
-//                        (difference1 < 2 && !differentSize) || (differentSize && min(difference1, difference2) < 2)
-//                )
-//                        && i < word1.length()
-//                ) {
-//            if (word1.charAt(i) != word2.charAt(i)) {
-//                difference1++;
-//            }
-//            if (differentSize && word1.charAt(i) != word2.charAt(i + 1)) {
-//                difference2++;
-//            }
-//            i++;
-//        }
+        return difference;
+    }
 
-//        return differentSize ? min(difference1, difference2) : difference1;
+    private int calculateForSameSize(String word1, String word2) {
+        int i = 0;
+        int difference = 0;
+        while (i < word1.length()) {
+            if (word1.charAt(i) != word2.charAt(i)) {
+                difference++;
+                if (difference > 1) {
+                    break;
+                }
+            }
+            i++;
+        }
         return difference;
     }
 
