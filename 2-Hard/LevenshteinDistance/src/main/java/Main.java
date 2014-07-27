@@ -12,12 +12,9 @@ import static java.lang.Math.min;
  */
 public class Main {
 
-    private static List<Node> words = new LinkedList<>();
-    private static List<Node> dictionary = new LinkedList<>();
-    private static Map<Node, Node> network = new HashMap<>();
+    private static Dictionary dictionary = new Dictionary();
     //
-    private static Node[] dictArray;
-
+    private static List<Node> wordNodes = new LinkedList<>();
 
     public static void main(String[] args) throws Throwable {
         solveChallenge(args);
@@ -26,165 +23,230 @@ public class Main {
     private static void solveChallenge(String[] args) throws Throwable {
         BufferedReader reader = new BufferedReader(new FileReader(new File(args[0])));
         String fileLine;
-        //
         // Load wordlist
         while ((fileLine = reader.readLine()) != null) {
-            if (fileLine.charAt(0) == 'E') {
+            if (fileLine.charAt(0) != 'E') {
+                wordNodes.add(new Node(fileLine));
+            } else {
                 break;
             }
-            addToWordList(fileLine);
         }
         // Second part, load dictionary for comparison
         while ((fileLine = reader.readLine()) != null) {
-            addToDictionary(fileLine);
+            dictionary.addNode(new Node(fileLine));
         }
-        dictArray = toArray(dictionary);
-        network = new HashMap<>();
+        //
         listLevenshteinDistances();
     }
 
     private static void listLevenshteinDistances() {
         //
-        for (Node word : words) {
-            System.out.println(countSocialNetworkFor(word));
+        for (Node wordNode : wordNodes) {
+            Set<Node> friends = dictionary.findFriendsFor(wordNode);
+            wordNode.addFriends(friends);
+            //
+            exploreSocialNetworkFor(friends, dictionary);
+            System.out.println(socialNetworkSizeOf(wordNode, new HashSet<Node>()));
         }
     }
 
-    private static int countSocialNetworkFor(Node socialWord) {
-        createNetworkFor(socialWord);
-        //
-        Set<Node> network = listNetworkFor(socialWord, new HashSet<Node>());
-        return network.size();
-    }
-
-    private static Set<Node> listNetworkFor(Node socialWord, Set<Node> network) {
-        network.addAll(socialWord.friends);
-        //
-        for (Node friend : socialWord.friends) {
-            for (Node friendOfFriend : friend.friends) {
-                if (!network.contains(friendOfFriend)) {
-                    network.add(friendOfFriend);
-                    listNetworkFor(friendOfFriend, network);
-                }
+    private static int socialNetworkSizeOf(Node wordNode, Set<Node> socialNetworkedNodes) {
+        for (Node friend : wordNode.friends) {
+            if (!socialNetworkedNodes.contains(friend)) {
+                socialNetworkedNodes.add(friend);
+                socialNetworkSizeOf(friend, socialNetworkedNodes);
             }
         }
-        return network;
+        return socialNetworkedNodes.size();
     }
 
-    private static void createNetworkFor(Node word) {
-        word.friends = collectFriendsFor(word);
-        createNetworkFor(word.friends);
+    private static void exploreSocialNetworkFor(Set<Node> wordNodes, Dictionary dictionary) {
+        for (Node wordNode : wordNodes) {
+            if (!wordNode.processed) {
+                wordNode.processed = true;
+                Set<Node> friends = dictionary.findFriendsFor(wordNode);
+                wordNode.addFriends(friends);
+                //
+                exploreSocialNetworkFor(friends, dictionary);
+            }
+        }
+    }
+}
 
+class Dictionary {
+    // list words by their length
+    LinkedList<Node>[] nodes = new LinkedList[25];
+
+    public void addNode(Node node) {
+        int wordLength = node.word.length();
+        ensureCapacity(wordLength);
+        if (nodes[wordLength] == null) {
+            nodes[wordLength] = new LinkedList<>();
+        }
+        nodes[wordLength].add(node);
     }
 
-    private static void createNetworkFor(Set<Node> words) {
-        for (Node word : words) {
-            if (word.friends == null) {
-                for (Node dictWord : dictArray) {
-                    if (areFriends(word, dictWord) && !word.equals(dictWord)) {
-                        word.addFriend(dictWord);
-
+    public Set<Node> findFriendsFor(Node node) {
+        Set<Node> result = new HashSet<>();
+        int wordLength = node.word.length();
+        //
+        int i = wordLength > 1 ? wordLength - 1 : 0;
+        //
+        while (i < wordLength + 2 && i <= nodes.length) {
+            if (nodes[i] != null) {
+                for (Node dictNode : nodes[i]) {
+                    if (node.isFriend(dictNode)) {
+                        result.add(dictNode);
                     }
                 }
             }
-        }
-    }
-
-    private static Set<Node> collectFriendsFor(Node socialWord) {
-        Set<Node> result = new HashSet<>();
-        for (Node dictWord : dictArray) {
-            if (areFriends(socialWord, dictWord)) {
-                result.add(dictWord);
-            }
+            i++;
         }
         return result;
     }
 
-    private static Node[] toArray(List<Node> nodeList) {
-        Node[] dictArray = new Node[nodeList.size()];
-        toArray(nodeList, dictArray);
-        //
-        return dictArray;
-    }
-
-    private static void toArray(List<Node> nodeList, Node[] dictArray) {
-        int i = 0;
-        for (Node node : nodeList) {
-            dictArray[i++] = node;
+    // not necessary for the current dataset, but I can't resist to implement hehehe
+    private void ensureCapacity(int requiredLength) {
+        if (nodes.length <= requiredLength) {
+            nodes = Arrays.copyOf(nodes, requiredLength + 1);
         }
     }
 
-    private static void addToWordList(String fileLine) {
-        Node node = new Node(fileLine);
-        node.type = 1;
-        words.add(node);
+    public static int levenshteinDistance(String s, String t) {
+
+        // for all i and j, d[i,j] will hold the Levenshtein distance between
+        // the first i characters of s and the first j characters of t;
+        // note that d has (m+1)*(n+1) values
+        int[][] arr = new int[s.length() + 1][t.length() + 1];
+
+
+        // source prefixes can be transformed into empty string by
+        // dropping all characters
+        for (int i = 1; i <= s.length(); i++) {
+            arr[i][0] = i;
+        }
+
+        // target prefixes can be reached from empty source prefix
+        // by inserting every characters
+        for (int i = 1; i <= t.length(); i++) {
+            arr[0][i] = i;
+        }
+
+        arr[0][0] = 0;
+
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 1; j <= t.length(); j++) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    arr[i][j] = arr[i - 1][j - 1];
+                } else {
+                    arr[i][j] = Math.min(Math.min(arr[i - 1][j] + 1, arr[i][j - 1] + 1),
+                            arr[i - 1][j - 1] + 1);
+                }
+            }
+        }
+
+        return arr[s.length()][t.length()];
+    }
+}
+
+class Node {
+    public String word;
+    public Set<Node> friends;
+    public boolean processed;
+
+    public Node(String word) {
+        this.word = word;
     }
 
-    private static void addToDictionary(String fileLine) {
-        Node node = new Node(fileLine);
-        dictionary.add(node);
+    public void addFriends(Set<Node> friends) {
+        ensureFriendsListInitialized();
+        this.friends.addAll(friends);
     }
 
     // very quick comparison for only one char difference
-    private static boolean areFriends(Node node1, Node node2) {
-        String word1 = node1.word;
-        String word2 = node2.word;
+    // TODO test with aaaa|aaa, |baaa|aaa, aaab|aaa
+    public boolean isFriend(Node node) {
+        //
+        if (this == node) {
+            return false;
+        }
+        //
+        String word1 = this.word;
+        String word2 = node.word;
         // default difference starts with length comparison
         int difference = abs(word1.length() - word2.length());
         if (difference < 2) {
-            int minLength = min(word1.length(), word2.length());
-            int i = 0;
-            while (difference < 2 && i < minLength) {
-                if (word1.charAt(i) != word2.charAt(i)) {
-                    difference++;
-                }
-                i++;
-            }
+            difference += calculateDifference(word1, word2);
             return difference < 2;
         } else {
             return false;
         }
     }
 
-    private static class Node {
-        private String word;
-        private Set<Node> friends;
-        private int type;
 
-        public Node(String word) {
-            this.word = word;
+    private int calculateDifference(String word1, String word2) {
+        boolean differentSize = false;
+        if (word1.length() > word2.length()) {
+            String temp = word1;
+            word1 = word2;
+            word2 = temp;
+            differentSize = true;
         }
-
-        public void addFriend(Node friend) {
-            if (friends == null) {
-                friends = new HashSet<>();
+        //
+        int i = 0;
+        int difference = 0;
+        while (i < word1.length()) {
+            if (word1.charAt(i) != word2.charAt(i + difference)) {
+                difference++;
+                if (!differentSize || difference > 1) {
+                    break;
+                }
+            } else {
+                i++;
             }
-            //
-            friends.add(friend);
         }
+//        while (
+//                (
+//                        (difference1 < 2 && !differentSize) || (differentSize && min(difference1, difference2) < 2)
+//                )
+//                        && i < word1.length()
+//                ) {
+//            if (word1.charAt(i) != word2.charAt(i)) {
+//                difference1++;
+//            }
+//            if (differentSize && word1.charAt(i) != word2.charAt(i + 1)) {
+//                difference2++;
+//            }
+//            i++;
+//        }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+//        return differentSize ? min(difference1, difference2) : difference1;
+        return difference;
+    }
 
-            Node node = (Node) o;
-
-            if (word != null ? !word.equals(node.word) : node.word != null) return false;
-
-            return true;
+    private void ensureFriendsListInitialized() {
+        if (friends == null) {
+            friends = new HashSet<>();
         }
+    }
 
-        @Override
-        public int hashCode() {
-            return word != null ? word.hashCode() : 0;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return !(word != null ? !word.equals(node.word) : node.word != null);
+    }
 
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "word='" + word + '\'' +
-                    '}';
-        }
+    @Override
+    public int hashCode() {
+        return word != null ? word.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "word='" + word + '\'' +
+                '}';
     }
 }
