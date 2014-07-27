@@ -18,20 +18,20 @@ public class Main {
 
     public static void main(String[] args) throws Throwable {
         solveChallenge(args);
-        Node node1 = null;
-        Node node2 = null;
-        //
-        node1 = new Node("abcde");
-        node2 = new Node("abcee");
-        System.out.println(node1.isFriend(node2));
-        //
-        node1 = new Node("abcde");
-        node2 = new Node("abcede");
-        System.out.println(node1.isFriend(node2));
-        //
-        node1 = new Node("hello");
-        node2 = new Node("aahed");
-        System.out.println(node1.isFriend(node2));
+//        Node node1 = null;
+//        Node node2 = null;
+
+//        node1 = new Node("abcde");
+//        node2 = new Node("abcee");
+//        System.out.println(node1.isFriend(node2));
+
+//        node1 = new Node("abcde");
+//        node2 = new Node("abcede");
+//        System.out.println(node1.isFriend(node2));
+
+//        node1 = new Node("hello");
+//        node2 = new Node("aahed");
+//        System.out.println(node1.isFriend(node2));
 
     }
 
@@ -110,7 +110,8 @@ class Dictionary {
         while (i < wordLength + 2 && i <= nodes.length) {
             if (nodes[i] != null) {
                 for (Node dictNode : nodes[i]) {
-                    if (node.isFriend(dictNode) || levenshteinDistance(node.word, dictNode.word) < 2) {
+//                    int dist = levenshteinDistance(node.word, dictNode.word);
+                    if (node.isFriend(dictNode)) {
                         result.add(dictNode);
                     }
                 }
@@ -125,42 +126,6 @@ class Dictionary {
         if (nodes.length <= requiredLength) {
             nodes = Arrays.copyOf(nodes, requiredLength + 1);
         }
-    }
-
-    public static int levenshteinDistance(String s, String t) {
-
-        // for all i and j, d[i,j] will hold the Levenshtein distance between
-        // the first i characters of s and the first j characters of t;
-        // note that d has (m+1)*(n+1) values
-        int[][] arr = new int[s.length() + 1][t.length() + 1];
-
-
-        // source prefixes can be transformed into empty string by
-        // dropping all characters
-        for (int i = 1; i <= s.length(); i++) {
-            arr[i][0] = i;
-        }
-
-        // target prefixes can be reached from empty source prefix
-        // by inserting every characters
-        for (int i = 1; i <= t.length(); i++) {
-            arr[0][i] = i;
-        }
-
-        arr[0][0] = 0;
-
-        for (int i = 1; i <= s.length(); i++) {
-            for (int j = 1; j <= t.length(); j++) {
-                if (s.charAt(i - 1) == t.charAt(j - 1)) {
-                    arr[i][j] = arr[i - 1][j - 1];
-                } else {
-                    arr[i][j] = Math.min(Math.min(arr[i - 1][j] + 1, arr[i][j - 1] + 1),
-                            arr[i - 1][j - 1] + 1);
-                }
-            }
-        }
-
-        return arr[s.length()][t.length()];
     }
 }
 
