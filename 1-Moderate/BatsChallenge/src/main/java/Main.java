@@ -8,9 +8,10 @@ import java.io.FileReader;
  */
 public class Main {
 
+    public static final int MIN_DISTANCE_FROM_BUILDINGS = 6;
+
     public static void main(String[] args) throws Throwable {
-//        solveChallenge(args);
-        batsChallenge("22 2 2 9 11");
+        solveChallenge(args);
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
@@ -28,16 +29,30 @@ public class Main {
         String[] elements = fileLine.split(" ");
         int length = Integer.parseInt(elements[0], 10);
         int distance = Integer.parseInt(elements[1], 10);
-        int batsAmount = Integer.parseInt(elements[2], 10);
+        int existingBatAmount = Integer.parseInt(elements[2], 10);
         //
+        int existingBatCounter = 0;
+        int position = MIN_DISTANCE_FROM_BUILDINGS;
+        int nextBatPos = existingBatAmount > 0 ? Integer.parseInt(elements[3 + existingBatCounter], 10) : Integer.MIN_VALUE;
+        int newBatCounter = 0;
+        while (position <= length - MIN_DISTANCE_FROM_BUILDINGS) {
+            if (nextBatPos == Integer.MIN_VALUE) {
+                // no more existing bats
+                newBatCounter++;
+            } else {
+                // is there a bat within the distance?
+                if (position + distance <= nextBatPos) {
+                    newBatCounter++;
+                } else {
+                    position = nextBatPos;
+                    existingBatCounter++;
+                    nextBatPos = existingBatCounter < existingBatAmount ? Integer.parseInt(elements[3 + existingBatCounter], 10) : Integer.MIN_VALUE;
+                }
+            }
+            position += distance;
+        }
+        System.out.println(newBatCounter);
 
     }
 }
 
-class LinkedListNode<T> {
-
-    public T value;
-    public LinkedListNode<T> next;
-
-
-}
