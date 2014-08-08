@@ -124,6 +124,7 @@
         <module>1-Moderate/BatsChallenge</module>
         <module>1-Moderate/CityBlocksFlyover</module>
         <module>1-Moderate/SimpleCalculator</module>
+        <module>0-Easy/RollerCoaster</module>
         <!-- Hard -->
     </modules>
 
