@@ -1,6 +1,11 @@
 import sys
 
-def multiplesOfANumber(fileLine):
+"""
+Author: Robert Stern (lexandro2000@gmail.com)
+All of my solutions are available from https://github.com/lexandro/codeeval
+"""
+
+def multiples_of_a_number(fileLine):
   x, n = fileLine.split(',')
   x, n = int(x), int(n)
   multiplier=n
@@ -13,5 +18,5 @@ for test in test_cases:
   test = test.strip()
   if len(test) == 0:
     continue
-  multiplesOfANumber(test)
+  multiples_of_a_number(test)
 test_cases.close()

@@ -1,5 +1,10 @@
 import sys
 
+"""
+Author: Robert Stern (lexandro2000@gmail.com)
+All of my solutions are available from https://github.com/lexandro/codeeval
+"""
+
 def modulo(fileLine):
   n, m = fileLine.split(',')
   n, m = int(n), int(m)

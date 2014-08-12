@@ -5,8 +5,7 @@ Author: Robert Stern (lexandro2000@gmail.com)
 All of my solutions are available from https://github.com/lexandro/codeeval
 """
 
-
-def rollerCoaster(fileLine):
+def roller_coaster(fileLine):
   result = ""
   flag = True
   for i in range(len(fileLine)):
@@ -25,5 +24,5 @@ def rollerCoaster(fileLine):
 test_cases = open(sys.argv[1], 'r')
 for test in test_cases:
   test = test.strip()
-  print rollerCoaster(test)
+  print roller_coaster(test)
 test_cases.close()
