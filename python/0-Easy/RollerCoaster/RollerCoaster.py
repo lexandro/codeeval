@@ -5,19 +5,16 @@ Author: Robert Stern (lexandro2000@gmail.com)
 All of my solutions are available from https://github.com/lexandro/codeeval
 """
 
+
 def roller_coaster(fileLine):
   result = ""
   flag = True
   for i in range(len(fileLine)):
     letter = fileLine[i]
     if letter.isalpha():
-      if flag:
-        result += letter.upper()
-      else:
-        result += letter.lower()
+      letter = letter.upper() if flag else letter.lower()
       flag = not flag
-    else:
-      result += letter
+    result += letter
   return result
 
 
