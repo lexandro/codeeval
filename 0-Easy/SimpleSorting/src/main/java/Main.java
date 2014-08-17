@@ -16,11 +16,11 @@ public class Main {
         String fileLine;
         //
         while ((fileLine = reader.readLine()) != null) {
-            System.out.println(sortSeveralNumbers(fileLine));
+            System.out.println(simpleSorting(fileLine));
         }
     }
 
-    private static String sortSeveralNumbers(String fileLine) {
+    private static String simpleSorting(String fileLine) {
         String[] numberStrings = fileLine.split(" ");
         BigDecimal[] numbers = new BigDecimal[numberStrings.length];
         for (int i = 0; i < numberStrings.length; i++) {
