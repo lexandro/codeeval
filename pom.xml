@@ -127,6 +127,7 @@
         <module>0-Easy/RollerCoaster</module>
         <module>0-Easy/NiceAngles</module>
         <module>0-Easy/BigDigits</module>
+        <module>1-Moderate/InterruptedBubbleSort</module>
         <!-- Hard -->
     </modules>
 
