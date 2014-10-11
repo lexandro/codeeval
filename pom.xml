@@ -129,6 +129,7 @@
         <module>0-Easy/BigDigits</module>
         <module>1-Moderate/InterruptedBubbleSort</module>
         <module>1-Moderate/PredictTheNumber</module>
+        <module>1-Moderate/GameOfLife</module>
         <!-- Hard -->
     </modules>
 
