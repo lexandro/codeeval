@@ -130,6 +130,7 @@
         <module>1-Moderate/InterruptedBubbleSort</module>
         <module>1-Moderate/PredictTheNumber</module>
         <module>1-Moderate/GameOfLife</module>
+        <module>0-Easy/DeltaTime</module>
         <!-- Hard -->
     </modules>
 
