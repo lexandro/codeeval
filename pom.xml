@@ -132,6 +132,7 @@
         <module>1-Moderate/GameOfLife</module>
         <module>0-Easy/DeltaTime</module>
         <module>0-Easy/ReadMore</module>
+        <module>1-Moderate/GuessTheNumber</module>
         <!-- Hard -->
     </modules>
 
