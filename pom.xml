@@ -133,6 +133,7 @@
         <module>0-Easy/DeltaTime</module>
         <module>0-Easy/ReadMore</module>
         <module>1-Moderate/GuessTheNumber</module>
+        <module>0-Easy/SlangFlavor</module>
         <!-- Hard -->
     </modules>
 
