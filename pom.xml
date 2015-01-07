@@ -134,6 +134,7 @@
         <module>0-Easy/ReadMore</module>
         <module>1-Moderate/GuessTheNumber</module>
         <module>0-Easy/SlangFlavor</module>
+        <module>0-Easy/WithoutRepetitons</module>
         <!-- Hard -->
     </modules>
 
