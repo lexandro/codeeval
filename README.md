@@ -11,3 +11,7 @@ sacrificing the readability if necessary.
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lexandro/codeeval/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
