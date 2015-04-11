@@ -135,6 +135,7 @@
         <module>1-Moderate/GuessTheNumber</module>
         <module>0-Easy/SlangFlavor</module>
         <module>0-Easy/WithoutRepetitons</module>
+        <module>0-Easy/MaxRangeSum</module>
         <!-- Hard -->
     </modules>
 
