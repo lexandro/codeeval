@@ -13,7 +13,7 @@
         <!-- testing -->
         <junit.version>4.11</junit.version>
         <!-- plugins -->
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <maven.compiler.version>3.1</maven.compiler.version>
         <caliper.version>1.0-beta-1</caliper.version>
     </properties>
@@ -25,6 +25,7 @@
         <module>0-Easy/CalculateDistance</module>
         <module>0-Easy/CapitalizeWords</module>
         <module>0-Easy/CompressedSequence</module>
+        <module>0-Easy/CleanUpTheWords</module>
         <module>0-Easy/DataRecovery</module>
         <module>0-Easy/EvenNumbers</module>
         <module>0-Easy/FibonacciSeries</module>
