@@ -69,6 +69,7 @@
         <module>0-Easy/SumOfPrimes</module>
         <module>0-Easy/SwapCase</module>
         <module>0-Easy/SwapElements</module>
+        <module>0-Easy/Testing</module>
         <module>0-Easy/TheMajorElement</module>
         <module>0-Easy/UniqueElements</module>
         <module>0-Easy/WordToDigit</module>
