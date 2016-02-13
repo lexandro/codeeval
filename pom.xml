@@ -22,6 +22,7 @@
         <!-- 0-0-Easy -->
         <module>0-Easy/BeautifulStrings</module>
         <module>0-Easy/BitPositions</module>
+        <module>0-Easy/BlackCard</module>
         <module>0-Easy/CalculateDistance</module>
         <module>0-Easy/CapitalizeWords</module>
         <module>0-Easy/CompressedSequence</module>
