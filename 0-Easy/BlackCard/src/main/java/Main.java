@@ -1,18 +1,15 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Stream;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
   All of my solutions are available from https://github.com/lexandro/codeeval
  */
 public class Main {
-
-    public static final int MAX_TEAMS = 7;
 
     public static void main(String[] args) throws Throwable {
         solveChallenge(args);
@@ -22,7 +19,7 @@ public class Main {
         Files.lines(Paths.get(args[0])).forEach(Main::blackCard);
     }
 
-    protected static void blackCard(String fileLine) {
+    private static void blackCard(String fileLine) {
         String[] elements = fileLine.split("\\|");
         int steps = Integer.parseInt(elements[1].trim());
         String[] players = elements[0].split(" ");
@@ -45,9 +42,7 @@ public class Main {
 
     private static List<String> convertPlayerArrayToLinkedList(String[] players) {
         List<String> playersList = new LinkedList<>();
-        for (String player : players) {
-            playersList.add(player);
-        }
+        Collections.addAll(playersList, players);
         return playersList;
     }
 
