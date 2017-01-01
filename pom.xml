@@ -146,6 +146,7 @@
         <module>2-Hard/LongestCommonSubsequence</module>
         <module>1-Moderate/CardNumberValidation</module>
         <module>1-Moderate/GronsfeldCipher</module>
+        <module>1-Moderate/BurrowsWheelerTransform</module>
         <!-- Hard -->
     </modules>
 
