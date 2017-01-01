@@ -145,6 +145,7 @@
         <module>0-Easy/MatrixRotation</module>
         <module>2-Hard/LongestCommonSubsequence</module>
         <module>1-Moderate/CardNumberValidation</module>
+        <module>1-Moderate/GronsfeldCipher</module>
         <!-- Hard -->
     </modules>
 
