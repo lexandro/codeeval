@@ -12,11 +12,24 @@ public class Main {
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
-        Files.lines(Paths.get(args[0])).map(Main::longestCommonSubsequence).forEach(System.out::println);
+        Files.lines(Paths.get(args[0])).map(Main::longestCommonSubSequence).forEach(System.out::println);
 
     }
 
-    static String longestCommonSubsequence(String fileLine) {
+    static String longestCommonSubSequence(String fileLine) {
+        String[] items = fileLine.split(";");
+        // check similarity O(1)
+        if (items[0].equals(items[1])) {
+            return items[0];
+        } else {
+            // ordering input by length, enough to check the smaller against the bigger one.
+            int longerIndex = items[0].length() > items[1].length() ? 0 : 1;
+            String longer = items[longerIndex];
+            String smaller = items[1 - longerIndex];
+            for (int i = 0; i < smaller.length(); i++) {
+                System.out.println(i);
+            }
+        }
         return fileLine + "";
 
     }
