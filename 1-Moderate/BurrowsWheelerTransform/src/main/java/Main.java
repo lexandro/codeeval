@@ -1,7 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Optional;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.com)
@@ -23,32 +22,42 @@ public class Main {
         //
         int terminator = fileLine.indexOf('|');
         StringBuilder data = new StringBuilder(fileLine.substring(0, terminator));
+        // Using array matrix to store variations
+        char[][] transforms = new char[data.length()][data.length()];
         //
-        StringBuilder[] transforms = new StringBuilder[data.length()];
-        for (int i = 0; i < data.length(); i++) {
-            if (transforms[i] == null) {
-                transforms[i] = new StringBuilder();
-            }
-        }
         //
         for (int i = 0; i < data.length(); i++) {
             for (int j = 0; j < data.length(); j++) {
-                transforms[j].insert(0, data.charAt(j));
+                // working with reversed char array to avoid insertion into to beginning of arrays
+                transforms[j][i] = data.charAt(j);
             }
-
-            // saving memory for comparison and not generating strings
+            final int currStrSize = i;
+            // saving memory for comparison and not generating strings, comparing reversed strings
             Arrays.sort(transforms, (o1, o2) -> {
-                for (int ii = 0; ii < o1.length(); ii++) {
-                    int cmp = Character.valueOf(o1.charAt(ii)).compareTo(o2.charAt(ii));
-                    if (cmp != 0) {
-                        return cmp;
+                for (int ii = currStrSize; ii >= 0; ii--) {
+                    int diff = o1[ii] - o2[ii];
+                    if (diff != 0) {
+                        return diff;
                     }
                 }
                 return 0;
             });
         }
-        Optional<StringBuilder> result = Arrays.stream(transforms).filter(item -> item.charAt(item.length() - 1) == '$').findFirst();
+
+        // We surely know there's one and only one entry starting with '$'
+        @SuppressWarnings("OptionalGetWithoutIsPresent") char[] result = Arrays
+                .stream(transforms).filter(item -> item[0] == '$')
+                .findFirst().get();
         //
-        return result.get().toString();
+        revertArray(result);
+        return String.valueOf(result);
+    }
+
+    private static void revertArray(char[] result) {
+        for (int i = 0; i < result.length / 2; i++) {
+            char temp = result[i];
+            result[i] = result[result.length - i - 1];
+            result[result.length - i - 1] = temp;
+        }
     }
 }
