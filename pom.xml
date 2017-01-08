@@ -147,6 +147,7 @@
         <module>1-Moderate/CardNumberValidation</module>
         <module>1-Moderate/GronsfeldCipher</module>
         <module>1-Moderate/BurrowsWheelerTransform</module>
+        <module>0-Easy/Panacea</module>
         <!-- Hard -->
     </modules>
 
