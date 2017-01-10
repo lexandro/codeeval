@@ -148,6 +148,7 @@
         <module>1-Moderate/GronsfeldCipher</module>
         <module>1-Moderate/BurrowsWheelerTransform</module>
         <module>0-Easy/Panacea</module>
+        <module>0-Easy/KnightMoves</module>
         <!-- Hard -->
     </modules>
 
