@@ -149,6 +149,7 @@
         <module>1-Moderate/BurrowsWheelerTransform</module>
         <module>0-Easy/Panacea</module>
         <module>0-Easy/KnightMoves</module>
+        <module>0-Easy/MinimumDistance</module>
         <!-- Hard -->
     </modules>
 
