@@ -152,6 +152,7 @@
         <module>0-Easy/MinimumDistance</module>
         <module>0-Easy/ComparePoints</module>
         <module>0-Easy/SwapNumbers</module>
+        <module>0-Easy/StringMask</module>
         <!-- Hard -->
     </modules>
 
