@@ -151,6 +151,7 @@
         <module>0-Easy/KnightMoves</module>
         <module>0-Easy/MinimumDistance</module>
         <module>0-Easy/ComparePoints</module>
+        <module>0-Easy/SwapNumbers</module>
         <!-- Hard -->
     </modules>
 
