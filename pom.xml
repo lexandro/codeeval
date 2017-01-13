@@ -155,6 +155,7 @@
         <module>0-Easy/StringMask</module>
         <module>0-Easy/StepwiseWord</module>
         <module>0-Easy/StringsAndArrows</module>
+        <module>0-Easy/FindTheHighestScore</module>
         <!-- Hard -->
     </modules>
 
