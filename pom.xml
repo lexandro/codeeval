@@ -159,6 +159,7 @@
         <module>0-Easy/ChardonnayOrCabernet</module>
         <module>0-Easy/TimeToEat</module>
         <module>0-Easy/OneZerosTwoZeros</module>
+        <module>0-Easy/RealFake</module>
         <!-- Hard -->
     </modules>
 
