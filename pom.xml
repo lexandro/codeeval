@@ -156,6 +156,7 @@
         <module>0-Easy/StepwiseWord</module>
         <module>0-Easy/StringsAndArrows</module>
         <module>0-Easy/FindTheHighestScore</module>
+        <module>0-Easy/ChardonnayOrCabernet</module>
         <!-- Hard -->
     </modules>
 
