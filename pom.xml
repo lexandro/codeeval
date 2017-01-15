@@ -160,6 +160,8 @@
         <module>0-Easy/TimeToEat</module>
         <module>0-Easy/OneZerosTwoZeros</module>
         <module>0-Easy/RealFake</module>
+        <module>0-Easy/TrickOrTreat</module>
+        <module>0-Easy/SimpleOrTrump</module>
         <!-- Hard -->
     </modules>
 
