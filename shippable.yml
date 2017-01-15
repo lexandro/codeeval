@@ -5,4 +5,4 @@ build_environment: ubuntu1204
 language: java
 
 jdk:
- - oraclejdk7
+ - oraclejdk8
