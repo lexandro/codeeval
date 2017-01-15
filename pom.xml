@@ -157,6 +157,7 @@
         <module>0-Easy/StringsAndArrows</module>
         <module>0-Easy/FindTheHighestScore</module>
         <module>0-Easy/ChardonnayOrCabernet</module>
+        <module>0-Easy/TimeToEat</module>
         <!-- Hard -->
     </modules>
 
