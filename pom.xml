@@ -162,6 +162,7 @@
         <module>0-Easy/RealFake</module>
         <module>0-Easy/TrickOrTreat</module>
         <module>0-Easy/SimpleOrTrump</module>
+        <module>0-Easy/MersennePrime</module>
         <!-- Hard -->
     </modules>
 
