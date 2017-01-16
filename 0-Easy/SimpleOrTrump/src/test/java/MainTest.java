@@ -6,7 +6,8 @@ public class MainTest {
 
     @Test
     public void shouldProcessTheExamples() throws Exception {
-        assertEquals("4", Main.trickOrTreat("Vampires: 1, Zombies: 1, Witches: 1, Houses: 1"));
-        assertEquals("36", Main.trickOrTreat("Vampires: 3, Zombies: 2, Witches: 1, Houses: 10"));
+        assertEquals("2H", Main.simpleOrTrump("AD 2H | H"));
+        assertEquals("KD KH", Main.simpleOrTrump("KD KH | C"));
+        assertEquals("JH", Main.simpleOrTrump("JH 10S | C"));
     }
 }

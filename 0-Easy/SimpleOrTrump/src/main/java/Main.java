@@ -1,8 +1,9 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /*
   Author: Robert Stern (lexandro2000@gmail.findTheHighestScore)
@@ -10,37 +11,56 @@ import java.util.regex.Pattern;
  */
 public class Main {
 
-    private static int[] candies = {3, 4, 5, 1};
-    private static Pattern pattern = Pattern.compile("(\\d+)");
+    private static Map<String, Integer> cardValues;
 
+    static {
+        cardValues = new HashMap<>();
+        cardValues.put("2", 2);
+        cardValues.put("3", 3);
+        cardValues.put("4", 4);
+        cardValues.put("5", 5);
+        cardValues.put("6", 6);
+        cardValues.put("7", 7);
+        cardValues.put("8", 8);
+        cardValues.put("9", 9);
+        cardValues.put("10", 10);
+        cardValues.put("J", 11);
+        cardValues.put("Q", 12);
+        cardValues.put("K", 13);
+        cardValues.put("A", 14);
+    }
 
     public static void main(String[] args) throws Throwable {
-
         solveChallenge(args);
     }
 
     private static void solveChallenge(String[] args) throws Throwable {
-        Files.lines(Paths.get(args[0])).map(Main::trickOrTreat).forEach(System.out::println);
+        Files.lines(Paths.get(args[0])).map(Main::simpleOrTrump).forEach(System.out::println);
 
     }
 
-    static String trickOrTreat(String fileLine) {
+    static String simpleOrTrump(String fileLine) {
+        String[] items = fileLine.split(" \\| ");
         //
-        Matcher matcher = pattern.matcher(fileLine);
-        int[] numbers = new int[4];
-        int count = 0;
-        int numberOfKids = 0;
-        //  extract numbers
-        while (matcher.find()) {
-            int number = Integer.valueOf(fileLine.substring(matcher.start(), matcher.end()));
-            numbers[count] = number * candies[count];
-            if (count < 3) {
-                numberOfKids += number;
-            }
-            count++;
-        }
+        char trump = items[1].charAt(0);
+        String[] cards = items[0].split(" ");
+        final int[] maxValue = {0};
+        //
+        Map<String, Integer> values = Arrays
+                .stream(cards)
+                .collect(Collectors.toMap(c -> c, c -> {
+                    int result = cardValues.get(c.substring(0, c.length() - 1));
+                    if (c.charAt(c.length() - 1) == trump) {
+                        result += 20;
+                    }
+                    //
+                    if (result > maxValue[0]) {
+                        maxValue[0] = result;
+                    }
+                    return result;
+                }));
 
-        return String.valueOf(Arrays.stream(numbers).limit(3).sum() * numbers[3] / numberOfKids);
+        return values.keySet().stream().filter(k -> values.get(k) == maxValue[0]).reduce("", (a, b) -> a + (a.length() > 0 ? " " : "") + b);
     }
 }
 
