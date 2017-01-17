@@ -1,6 +1,5 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /*
@@ -9,8 +8,8 @@ import java.util.LinkedList;
  */
 public class Main {
 
-    private static LinkedList<Integer> primeCache = new LinkedList<>();
-    private static LinkedList<Integer> mersenneCache = new LinkedList<>();
+    private static LinkedList<Long> mersenneCache = new LinkedList<>();
+    private static LinkedList<Long> primeCache = new LinkedList<>();
     //
 
     public static void main(String[] args) throws Throwable {
@@ -23,42 +22,53 @@ public class Main {
     }
 
     static String mersennePrime(String fileLine) {
-        int limit = Integer.parseInt(fileLine);
-        if (primeCache.isEmpty() || primeCache.peekLast() < limit) {
-            populatePrimeCache(limit);
-        }
+        long limit = Long.parseLong(fileLine);
+        checkCache(limit);
         return mersenneCache.stream().filter(p -> p <= limit).map(String::valueOf).reduce("", (a, b) -> "" + a + (a.length() > 0 ? ", " : "") + b);
     }
 
-    private static void populatePrimeCache(int limit) {
-        // make it odd :)
-        limit = Double.valueOf(Math.ceil(Math.log(limit + 1) / Math.log(2))).intValue() + 1;
-        //
-        int start = primeCache.isEmpty() ? 2 : primeCache.peekLast() + 1;
-        for (int i = start; i <= limit; i++) {
-            if (isPrime(i)) {
-                primeCache.add(i);
-                int mersenneCandidate = Double.valueOf(Math.pow(2, i) - 1).intValue();
-                if (isPrime(mersenneCandidate)) {
-                    mersenneCache.add(mersenneCandidate);
-                }
+    private static void checkCache(long limit) {
+        if (mersenneCache.isEmpty() || mersenneCache.peekLast() < limit) {
+            populateCacheUntil(limit);
+        }
+    }
+
+    private static void populateCacheUntil(long limit) {
+        long lastMersennePrime = mersenneCache.isEmpty() ? 1 : mersenneCache.peekLast();
+        long lastPrimePower = Double.valueOf(Math.ceil(Math.log(lastMersennePrime + 1) / Math.log(2))).longValue();
+
+        long mersenne = lastMersennePrime;
+        long primePower = lastPrimePower;
+        while (mersenne < limit) {
+            primePower = getNextPrime(primePower);
+            mersenne = Double.valueOf(Math.pow(2d, (double) primePower) - 1).longValue();
+            mersenneCache.add(mersenne);
+
+        }
+
+    }
+
+    private static long getNextPrime(long lastPrime) {
+        while (true) {
+            lastPrime++;
+            if (isPrime(lastPrime)) {
+                return lastPrime;
             }
         }
     }
 
-    private static boolean isPrime(int number) {
-        if (primeCache.isEmpty()) {
+    // can be cached too...
+    private static boolean isPrime(long number) {
+        if (number == 2) {
             return true;
         }
-        Iterator<Integer> iter = primeCache.iterator();
-        int i = iter.next();
-        int sqrt = Double.valueOf(Math.sqrt(number)).intValue() + 1;
-        while (i <= sqrt && iter.hasNext()) {
+        for (long i = 2; i < Math.ceil(Math.sqrt(number)) + 1; i++) {
             if (number % i == 0) {
                 return false;
             }
-            i = iter.next();
         }
         return true;
     }
+
+
 }
